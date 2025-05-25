@@ -4,11 +4,8 @@ DIR=stacer-$VERSION
 export VERSION=$VERSION
 
 rm -rf release build rpm/BUILDROOT rpm/*RPMS rpm/SOURCES
-mkdir release build
-cd build
-cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER=g++ ..
-make -j $(nproc)
-cd ..
+cmake -S . -B build -D CMAKE_BUILD_TYPE=Release
+cmake --build build -j $(nproc)
 
 # assets
 mkdir -p release/$DIR/stacer
